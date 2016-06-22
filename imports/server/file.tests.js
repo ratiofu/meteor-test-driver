@@ -1,9 +1,17 @@
-console.warn('file.tests.js')
-
 import fs from 'fs'
-import { Tests } from 'meteor/test-driver-package'
+import { describe, it , MochaRunner } from 'meteor/practicalmeteor:mocha'
+import { expect } from "meteor/practicalmeteor:chai"
 
-Tests.push(() => {
-  console.log('IS SERVER', Meteor.isServer)
-  console.log(Object.getOwnPropertyNames(fs))
-})
+var npmFs = Npm.require("fs");
+
+describe("fs module", ()=>{
+
+  console.log('IS SERVER', Meteor.isServer);
+  console.log('Version', MochaRunner.VERSION);
+  console.log(Object.getOwnPropertyNames(fs));
+
+  it("should work as expected", ()=>{
+    expect(npmFs).to.equal(fs);
+  })
+  
+});
